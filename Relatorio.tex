@@ -1,0 +1,121 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\documentclass[12pt, a4paper, oneside]{article}
+
+\input{/home/giatro/.config/user/giatro_packages.tex}
+
+\input{/home/giatro/.config/user/giatro_macros.tex}
+
+\title{Relatório - EP2 - Modelagem e Simulação}
+\date{\today}
+\author{
+Lucas Paiolla Forastiere \\ 11221911 
+\and
+Davi de Menezes Pereira \\ 11221988
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+\maketitle
+\newpage
+
+\section{Sobre as decisões iniciais}
+
+A primeira coisa que fizermos foi ler o enunciado e buscamos entender as equações
+e, em especial, a última. Depois, criamos um cronograma com a ordem das tarefas:
+
+\begin{enumerate}
+\item Fazer a função de Euler para aproximar a equação diferencial;
+\item Fazer a função para criar o vetor da parte 1 (com o número de casos por
+tempo);
+\item Utilizar essa função para fazer os gráficos referentes à parte 1;
+\item Criar uma função que gera uma ilha randomicamente para a parte 2;
+\item Utilizar a função da primeira parte para fazer a segunda (que criar uma matriz
+em que cada linha é um vetor de número de casos por tempo);
+\item Criar uma função que pega a matriz da função anterior e calcula um vetor 
+de normas dos vetores formados pelas colunas da matriz;
+\item Fazer a parte que plota os gráficos da parte 2;
+\item Fazer as animações desses gráficos;
+\item Decidir se faríamos ou não a parte extra;
+\item Fazer o relatório.
+\end{enumerate}
+
+Depois de fazer esse cronograma, nós decidimos como dividiríamos as tarefas.
+
+\subsection{Sobre a divisão de tarefas}
+
+Dividimos as tarefas da seguinte maneira:
+
+\begin{enumerate}
+\item Lucas;
+\item Lucas;
+\item Davi;
+\item Lucas;
+\item Lucas;
+\item Lucas
+\item Davi;
+\item Davi;
+\item Lucas (relatório).
+\end{enumerate}
+
+\section{Sobre as decisões de implementação}
+
+De começo, já tínhamos decididos a maioria das funções nas decisões iniciais.
+
+Após isso, as principais decisões de implementação foram:
+
+\begin{enumerate}
+\item Os parâmetros utilizados pela função de resoluçao da equação diferencial. 
+Nós passamos os antigos valores de $N$ e $T$, o valor do $\Delta T$ e um 
+vetor de parâmetros que são utilizados na equação diferencial, eles são:
+\begin{enumerate}
+    \item \textsc{param[0]} representa o $\alpha$ da equação;
+    \item \textsc{param[1]} representa o $\lambda$ da equação;
+    \item \textsc{param[2]} representa o $t_0$ da equação;
+    \item \textsc{param[3]} representa o $\mu$ da equação.
+\end{enumerate}
+
+\item Fazer a função da parte 1 receber os parâmetros citados acima (utilizados
+pela função de Euler). Assim, poderíamos utilizar ela cinco vezes apenas mudando
+esses parâmetros na parte 2;
+
+\item A decisão de começar os primeiros valores da equação diferencial como 
+$N = 1$ e $t = 1$, onde $N$ é o número de casos e $t$ é a unidade de tempo em dias.
+
+\item A decisão de usar um $dt$ igual a $0.1$. Fizemos alguns testes e avaliamos 
+que essa seria uma boa decisão.
+
+\item A decisão de usar o tempo de final da simulação como $t_f = 200$. Ou seja,
+duzentos dias após o começo da pandemia. Parece condiser com o que observamos 
+na realidade (como, por exemplo, o Brasil, que já está com aproximadamente
+cem dias desde o caso zero e ainda não vimos um pico claro);
+
+\item Uma decisão importante e demorada foi a de escolher os intervalos em que
+geraríamos os parâmetros aleatoriamente para as ilhas da parte 2. A função 
+\textsc{CriaIlha} gera um vetor de quatro coordenadas (de acordo com a decisão 1.)
+com os parâmetros nos seguintes intervalos:
+\begin{eqnarray}
+0.15 &<~ \alpha &< 0.45 \\ 0.001 &<~ \lambda &< 0.003 \\ 20 &<~ t_0 &< 80 \\ 10 &<~ \mu &< 100
+\end{eqnarray}
+
+Fizemos uma série de testes, mantendo três parâmetros constantes e variando o
+outro para enfim chegar na conclusão de que esses intervalos eram bons e 
+condisentes com a realidade (dentro dos limites esperados da simulação).
+
+\item Outra decisão foi a forma como fizemos a matriz da parte dois, onde em 
+cada linha temos um vetor igual ao da parte1. Essa decisão afeta a forma como 
+plotamos esses gráficos depois e também como criamos o vetor das normas.
+
+\item Por fim, tomamos a decisão de salvar as animações em um arquivo a parte, ao
+invés de mostrar no notebook, pois estavamos enfrentando alguns problemas com 
+a quantidade de memória disponível nos notebooks.
+\end{enumerate}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\end{document}
